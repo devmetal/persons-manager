@@ -48,21 +48,21 @@ describe('Person Actions', () => {
 
   it('Dispatch UPDATE_PERSON', () => {
     const person = { "name": "Foo", "job": "", "age": "34", "nick": "", "employee": true };
-    const expectedAction = { type: 'UPDATE_PERSON', name: 'Foo', person };
+    const expectedAction = { type: 'UPDATE_PERSON', id: 1, person };
 
     const store = mockStore([]);
 
-    store.dispatch(actions.updatePerson('Foo', person));
+    store.dispatch(actions.updatePerson(1, person));
 
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
   it('Dispatch REMOVE_PERSON', () => {
-    const expectedAction = { type: 'REMOVE_PERSON', name: 'Foo' };
+    const expectedAction = { type: 'REMOVE_PERSON', id: 1 };
 
     const store = mockStore([]);
 
-    store.dispatch(actions.removePerson('Foo'));
+    store.dispatch(actions.removePerson(1));
 
     expect(store.getActions()).toEqual([expectedAction]);
   });
