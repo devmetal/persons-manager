@@ -1,0 +1,10 @@
+[ignore]
+./node_modules/.*
+./client/.*
+
+[include]
+
+[libs]
+./src/persons/persons.types.js
+
+[options]

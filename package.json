@@ -1,0 +1,32 @@
+{
+  "name": "persons-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Metál Ádám",
+  "license": "MIT",
+  "scripts": {
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "start": "cross-env NODE_ENV=development concurrently --kill-others \"npm run start:server\" \"npm run start:client\" ",
+    "deploy": "npm run build && cross-env NODE_ENV=production PORT=8080 node build/index.js",
+    "build": "npm run build:server && npm run build:client",
+    "start:server": "nodemon index.js",
+    "start:client": "node start-client.js",
+    "build:server": "npm run clean && babel ./src --out-dir ./build && npm run copy",
+    "build:client": "node build-client.js",
+    "clean": "rimraf ./build",
+    "copy": "node copydb.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "concurrently": "^3.1.0",
+    "cross-env": "^3.1.3",
+    "flow-bin": "^0.36.0",
+    "rimraf": "^2.5.4"
+  }
+}
